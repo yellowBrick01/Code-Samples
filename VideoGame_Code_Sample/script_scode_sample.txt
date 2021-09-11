@@ -1,0 +1,100 @@
+﻿# The script of the game goes in this file.
+# Declare characters used by this game. The color argument colorizes the
+# name of the character.
+
+define n = Character("Narrator")
+
+# Defined Images are here:
+
+image white_bg = "bg_white.jpg"
+image bg_book = "book_bg.jpg"
+image bear = "Bear Emblem.png"
+image eagle = "Eagle Emblem 2.png"
+image book = "book.jpg"
+image lion = "lion.jpg"
+
+#Defined custom screen
+
+screen hidden_book_screen:
+    hbox:
+        textbutton "here" clicked Function(renpy.call, label="found_book")
+
+# The game starts here.
+
+label start:
+
+    # Show a background. This uses a placeholder by default, but you can
+    # add a file (named either "bg room.png" or "bg room.jpg") to the
+    # images directory to show it.
+
+    # This shows a character sprite. A placeholder is used, but you can
+    # replace it by adding a file named "eileen happy.png" to the images
+    # directory.
+
+
+    # These display lines of dialogue.
+    n "This is a playable prototype for my final project. This demo has
+    no story. I did not have the time to write a script."
+
+    n "Nonetheless, the prototype will allow you to experince the key gameplay
+    features that will represent the final product."
+
+    n "My game gives you the power to decide the actions that the main
+    character will take. Those chocies will determine which of the three
+    major factions will rise up to lead the nation of Benelux."
+
+    menu:
+        "The three options will provide supplementary information about the
+        factions and demonstrate how my project handles decisions."
+
+        "Tell me more about the Commune":
+            show white_bg
+            show bear
+            "The Commune can traces its origin to the Franco-Iberian empire. However,
+            they are very unpopular  because  of opposing the empire's involvement
+            in the Great War. "
+            "Which is why, the Commune has relocated to Benelux. Nonetheless, the
+            poor are supportive of the Commune's efforts to enact social reform."
+            "The Commune might not be the most organized but it has access to mages
+            and veteran soldiers."
+        "Tell me more about the Mages of the Phoenix":
+            show eagle
+            "The Mages of the Phoenix are a group of elven separatist. It is
+            important to note that elves were the losers of the Great War."
+            "These elves reject modern medicine and technology becuse they were created
+            by the humans."
+            "The Mages of the Phoenix see themselves as the champions for elven kind."
+            "The mages want to transform the forest of eastern Benelux into the capital of a new elven empire."
+        "Tell me more about the Vanguards":
+            show lion
+            "The Vanaguards are the industrialist and intellectuals of Benelux.
+            They develop new techonolgy that will help the human population of
+            Benelux. The Vanaguards are well known for their xenophobia."
+            "Therefore, they lobby the current goverment to revoke the rights of
+            non-humans."
+            "The Vanaguards weild the greatest influnce in Benluxian society. They
+            used their political power to ban the use of magic."
+            "The ban on magic has lead to the rise of a black market for enchanted
+            items."
+    n "The next major aspect of game is the ability to search for hidden items."
+    show bg_book
+    show screen hidden_book_screen
+    n "There is a hidden book in this libary. You can look for it or exit the demo."
+    return
+    label found_book:
+        hide screen hidden_book_screen
+        show book
+        "The book chronicles the history of Benelux from its humble orgins as a
+        fishing port to its current state as a victor of the Great War. However, many historians
+        have noted that less flattering events of Beneluxian history have been
+        omitted."
+        "Moreover, the book have been criticized for its protrayal of eleves and
+        those who are deemed as 'non-human'."
+        "Nonetheless, the humans of Benelux will never let the turth get in the way
+        of a good story."
+        n"Good job! You have the book. Hidden items will not affect the story.
+        However, the items will provide you with more information about the world."
+        jump end_demo
+    # This ends the game.
+label end_demo:
+    return
